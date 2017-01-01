@@ -2,6 +2,7 @@
 *pyc
 dist/
 data/*
+!data/iam
 !data/examples
 docs/_build
 server/
