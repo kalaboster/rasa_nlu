@@ -209,6 +209,11 @@ class RasaRequestHandler(BaseHTTPRequestHandler):
                 self.wfile.write(
                     json.dumps({"info": "training started with pid {0}".format(self.data_router.train_proc.pid)})
                 )
+            if self.path.startswith("/reply"):
+                self._set_headers()
+                data_string = self.rfile.read(int(self.headers['Content-Length']))
+                data_dict = json.loads(data_string.decode("utf-8"))
+                self.wfile.write(self.get_response(data_dict))
         else:
             self.auth_err()
         return

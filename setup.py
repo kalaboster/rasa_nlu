@@ -9,6 +9,7 @@ setup(
         'rasa_nlu.extractors',
         'rasa_nlu.featurizers',
         'rasa_nlu.interpreters',
+        'rasa_nlu.narrator',
         'rasa_nlu.trainers',
         'rasa_nlu.tokenizers',
         'rasa_nlu.visualization'

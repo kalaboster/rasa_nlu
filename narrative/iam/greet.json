@@ -1,11 +1,11 @@
-{  
+{
   "intent" : "greet",
   "state" : "initial",
   "response" : {
-      "initial": [],
-      "continued" : [],
-      "closing" : [],
-      "annoyed" : []
+      "initial": "Hi",
+      "continued" : "Hi?",
+      "annoyed" : "HI!",
+      "bored": "...Hi..."
   }
 
 }
