@@ -20,10 +20,3 @@ def test_spacy():
     tokenize_sentence(u"hello ńöñàśçií", [u'hello', u'ńöñàśçií'], 'en')
     tokenize_sentence(u"Hallo. Mein name ist rasa", [u'Hallo', u'.', u'Mein', u'name', u'ist', u'rasa'], 'de')
 
-
-def test_mitie():
-    from rasa_nlu.tokenizers.mitie_tokenizer import MITIETokenizer
-    tk = MITIETokenizer()
-
-    tk.tokenize(u"Hi. My name is rasa") == [u'Hi', u'My', u'name', u'is', u'rasa']
-    tk.tokenize(u"ὦ ἄνδρες ᾿Αθηναῖοι.") == [u'ὦ', u'ἄνδρες', u'᾿Αθηναῖοι']

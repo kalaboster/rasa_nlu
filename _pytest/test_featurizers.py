@@ -23,12 +23,3 @@ def test_spacy():
                   _ref=np.array([-0.0518572, -0.13645099, 0.34630662, 0.29546982, -0.0153512]))
 
 
-def test_mitie():
-    from rasa_nlu.featurizers.mitie_featurizer import MITIEFeaturizer
-
-    filename = os.environ.get('MITIE_FILE')
-    if (filename and os.path.isfile(filename)):
-        ftr = MITIEFeaturizer(os.environ.get('MITIE_FILE'))
-        sentence = "Hey how are you today"
-        vecs = ftr.create_bow_vecs([sentence])
-        assert np.allclose(vecs[0][:5], np.array([0., -4.4551446, 0.26073121, -1.46632245, -1.84205751]), atol=1e-5)
