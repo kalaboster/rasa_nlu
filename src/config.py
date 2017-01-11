@@ -12,6 +12,7 @@ class RasaNLUConfig(object):
           "backend": "mitie",
           "config": "config.json",
           "data": None,
+          "narrative": None,
           "emulate": None,
           "language": "en",
           "log_file": None,

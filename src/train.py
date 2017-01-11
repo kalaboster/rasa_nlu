@@ -15,6 +15,7 @@ def create_argparser():
                         help='backend to use to interpret text (default: built in keyword matcher).')
     parser.add_argument('-p', '--path', default=None, help="path where model files will be saved")
     parser.add_argument('-d', '--data', default=None, help="file containing training data")
+    parser.add_argument('-n', '--narrative', default=None, help="file for files for narrative responses.")
     parser.add_argument('-c', '--config', required=True, help="config file")
     parser.add_argument('-l', '--language', default=None, choices=['de', 'en'], help="model and data language")
     parser.add_argument('-m', '--mitie_file', default=None,

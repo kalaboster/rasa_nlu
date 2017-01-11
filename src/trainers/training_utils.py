@@ -8,6 +8,7 @@ def write_training_metadata(output_folder, timestamp, data_file, backend_name,
     metadata = {
         "trained_at": timestamp,
         "training_data": data_file,
+        "narrative_data": narrative_file,
         "backend": backend_name,
         "intent_classifier": intent_file,
         "entity_extractor": entity_file,

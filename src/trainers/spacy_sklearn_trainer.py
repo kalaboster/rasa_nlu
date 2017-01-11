@@ -45,6 +45,7 @@ class SpacySklearnTrainer(Trainer):
         dir_name = os.path.join(path, "model_" + timestamp)
         os.mkdir(dir_name)
         data_file = os.path.join(dir_name, "training_data.json")
+        narrative_files = 
         classifier_file = os.path.join(dir_name, "intent_classifier.pkl")
         ner_dir = os.path.join(dir_name, 'ner')
         os.mkdir(ner_dir)
@@ -54,12 +55,16 @@ class SpacySklearnTrainer(Trainer):
         write_training_metadata(dir_name, timestamp, data_file, self.name, self.language_name,
                                 classifier_file, ner_dir)
 
+        # Wrtiing the training_data file.
         with open(data_file, 'w') as f:
             f.write(self.training_data.as_json(indent=2))
         with open(classifier_file, 'w') as f:
             cloudpickle.dump(self.intent_classifier, f)
         with open(entity_extractor_config_file, 'w') as f:
             json.dump(self.entity_extractor.ner.cfg, f)
+
+        # Copy the narrative data files.
+
 
         self.entity_extractor.ner.model.dump(entity_extractor_file)
 
