@@ -2,7 +2,7 @@
   "backend": "spacy_sklearn",
   "path" : "./",
   "data" : "./data/iam/acts/default.json",
-  "narrative" : "./narrative/iam/greet.json",
+  "narrative" : "./narrative",
   "server_model_dir" : "./model_20170107-162907",
   "language": "en"
 }

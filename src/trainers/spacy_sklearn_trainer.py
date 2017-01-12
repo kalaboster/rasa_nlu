@@ -9,6 +9,7 @@ from rasa_nlu.classifiers.sklearn_intent_classifier import SklearnIntentClassifi
 from rasa_nlu.extractors.spacy_entity_extractor import SpacyEntityExtractor
 from rasa_nlu.trainers.trainer import Trainer
 from training_utils import write_training_metadata
+from distutils.dir_util import copy_tree
 
 
 class SpacySklearnTrainer(Trainer):
@@ -45,14 +46,14 @@ class SpacySklearnTrainer(Trainer):
         dir_name = os.path.join(path, "model_" + timestamp)
         os.mkdir(dir_name)
         data_file = os.path.join(dir_name, "training_data.json")
-        narrative_files = 
+        narrative_dir = data_file = os.path.join(dir_name, "narrative")
         classifier_file = os.path.join(dir_name, "intent_classifier.pkl")
         ner_dir = os.path.join(dir_name, 'ner')
         os.mkdir(ner_dir)
         entity_extractor_config_file = os.path.join(ner_dir, "config.json")
         entity_extractor_file = os.path.join(ner_dir, "model")
 
-        write_training_metadata(dir_name, timestamp, data_file, self.name, self.language_name,
+        write_training_metadata(dir_name, timestamp, data_file, narrative_dir, self.name, self.language_name,
                                 classifier_file, ner_dir)
 
         # Wrtiing the training_data file.
@@ -63,7 +64,12 @@ class SpacySklearnTrainer(Trainer):
         with open(entity_extractor_config_file, 'w') as f:
             json.dump(self.entity_extractor.ner.cfg, f)
 
-        # Copy the narrative data files.
+        # Make he narrative directory.
+        os.mkdir(narrative_dir)
+
+        # Now copy the narrative
+        copy_tree(config.narrative, narrative_dir)
+        
 
 
         self.entity_extractor.ner.model.dump(entity_extractor_file)

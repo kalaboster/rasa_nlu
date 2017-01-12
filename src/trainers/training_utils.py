@@ -3,12 +3,12 @@ import json
 
 
 def write_training_metadata(output_folder, timestamp, data_file, backend_name,
-                            language_name, intent_file, entity_file,
+                            language_name, intent_filea, narrative_dir, entity_file,
                             feature_file=None):
     metadata = {
         "trained_at": timestamp,
         "training_data": data_file,
-        "narrative_data": narrative_file,
+        "narrative_data": narrative_dir,
         "backend": backend_name,
         "intent_classifier": intent_file,
         "entity_extractor": entity_file,
