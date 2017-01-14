@@ -18,6 +18,7 @@ class SpacySklearnTrainer(Trainer):
     def __init__(self, config, language_name):
         self.ensure_language_support(language_name)
         self.name = "spacy_sklearn"
+        self.config = config
         self.language_name = language_name
         self.training_data = None
         self.nlp = spacy.load(self.language_name, parser=False, entity=False)
@@ -46,7 +47,7 @@ class SpacySklearnTrainer(Trainer):
         dir_name = os.path.join(path, "model_" + timestamp)
         os.mkdir(dir_name)
         data_file = os.path.join(dir_name, "training_data.json")
-        narrative_dir = data_file = os.path.join(dir_name, "narrative")
+        narrative_dir = os.path.join(dir_name, "narrative")
         classifier_file = os.path.join(dir_name, "intent_classifier.pkl")
         ner_dir = os.path.join(dir_name, 'ner')
         os.mkdir(ner_dir)
@@ -68,8 +69,8 @@ class SpacySklearnTrainer(Trainer):
         os.mkdir(narrative_dir)
 
         # Now copy the narrative
-        copy_tree(config.narrative, narrative_dir)
-        
+        copy_tree(self.config.narrative, narrative_dir)
+
 
 
         self.entity_extractor.ner.model.dump(entity_extractor_file)

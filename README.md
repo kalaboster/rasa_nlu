@@ -17,12 +17,12 @@ The intended audience is mainly __people developing bots__, looking to find a a 
 2. Run rasa NLU on your machine and switch the URL of your wit/LUIS api calls to `localhost:5000/parse`.
 
 ### Why
-Reasons you might use this over one of the aforementioned services: 
+Reasons you might use this over one of the aforementioned services:
 * You don't have to hand over your data to FB/MSFT/GOOG
 * You don't have to make a `https` call to parse every message.
 * You can tune models to work well on your particular use case.
 
-These points are laid out in more detail in a [blog post](https://medium.com/lastmile-conversations/do-it-yourself-nlp-for-bot-developers-2e2da2817f3d). rasa is a set of tools for building more advanced bots, developed by [LASTMILE](https://golastmile.com). rasa NLU is the natural language understanding module, and the first component to be open sourced. 
+These points are laid out in more detail in a [blog post](https://medium.com/lastmile-conversations/do-it-yourself-nlp-for-bot-developers-2e2da2817f3d). rasa is a set of tools for building more advanced bots, developed by [LASTMILE](https://golastmile.com). rasa NLU is the natural language understanding module, and the first component to be open sourced.
 
 ## Use
 ### A. Install Locally
@@ -38,7 +38,7 @@ Before you start, ensure you have the latest version of docker engine on your ma
 #### 1. Build the image:
 ```
 docker build -t rasa_nlu .
-``` 
+```
 
 #### 2. Start the web server:
 ```
@@ -53,6 +53,11 @@ curl 'http://localhost:5000/parse?q=hello'
 ### C. (Experimental) Deploying to Docker Cloud
 [![Deploy to Docker Cloud](https://files.cloud.docker.com/images/deploy-to-dockercloud.svg)](https://cloud.docker.com/stack/deploy/)
 
+
+### D. Unit Testing
+```
+pytest _pytest/
+```
 
 ## License
 Copyright 2016 LastMile Technologies Ltd
