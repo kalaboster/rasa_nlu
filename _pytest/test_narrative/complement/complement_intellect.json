@@ -1,0 +1,11 @@
+{
+  "intent" : "complement_intellect",
+  "state" : "initial",
+  "response" : {
+      "initial": "I read.",
+      "continued" : "I know.",
+      "annoyed" : "Yup!",
+      "bored": "Hmmm...Yeah. I know."
+  }
+
+}

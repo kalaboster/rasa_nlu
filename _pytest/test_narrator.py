@@ -1,14 +1,8 @@
 import pytest
+from rasa_nlu.narrator import Narrative
 
 
-test_greet = {
-  "intent" : "greet",
-  "state" : "initial",
-  "response" : [
-      "initial": "Hi",
-      "continued" : "Hi?",
-      "annoyed" : "HI!",
-      "bored": "...Hi..."
-  ]
 
-}
+def test_load():
+    narratir_dir = "test_narrative"
+    narrator = Narrative(self, narratir_dir)
