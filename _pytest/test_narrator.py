@@ -1,8 +1,9 @@
 import pytest
-from rasa_nlu.narrator import Narrative
+from rasa_nlu.narrator.narrative import Narrative
 
 
 
 def test_load():
-    narratir_dir = "test_narrative"
-    narrator = Narrative(self, narratir_dir)
+    narrator_dir = "test_narrative"
+    narrator = Narrative(narrator_dir)
+    narrator_data = narrator.load_files()
