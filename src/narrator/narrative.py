@@ -7,7 +7,7 @@ class Narrative():
         def __init__(self, narrative_dir=None):
             # Check to be sure it is not none.
             if narrative_dir is None:
-                raise ValueError("No narrator as narrator is None: " + narrative_dir)
+                raise ValueError("No narrator as narrator is None.")
             # Check the dir exists.
             if not os.path.isdir(narrative_dir):
                 raise ValueError("narrator_dir is not a directory: " + narrative_dir)
@@ -27,12 +27,14 @@ class Narrative():
             if self.narrative_dir is None:
                 raise ValueError("No narrator as narrator is None: " + self.narrative_dir)
 
+            print "Loading files..."
+
             for (dirpath, dirnames, filenames) in os.walk(self.narrative_dir):
+                print "."
                 for filename in filenames:
                     if filename.endswith('.json'):
-                        self.narrative_files.extend(filenames)
-
-                    break
+                        self.narrative_files.extend(filename)
+                        print "File" + filename
 
             return self.narrative_files
 
