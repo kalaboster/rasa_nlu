@@ -30,11 +30,10 @@ class Narrative():
             print "Loading files..."
 
             for (dirpath, dirnames, filenames) in os.walk(self.narrative_dir):
-                print "."
                 for filename in filenames:
                     if filename.endswith('.json'):
-                        self.narrative_files.extend(filename)
-                        print "File" + filename
+                        self.narrative_files.append(dirpath + os.path.sep + filename)
+                        print dirpath + os.path.sep + filename
 
             return self.narrative_files
 

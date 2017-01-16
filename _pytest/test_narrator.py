@@ -5,9 +5,11 @@ from rasa_nlu.narrator.narrative import Narrative
 
 def test_load():
     narrator = Narrative("test_narrative")
+    narrator_files = []
     narrator_files = narrator.load_files()
 
-    assert narrator_files == {}
+    assert narrator_files.index('test_narrative/complement/complement_empty.json') == 3
+    assert narrator_files.index('test_narrative/greet.json') == 0
 
 def test_load_no_dir():
     with pytest.raises(ValueError) as error:
