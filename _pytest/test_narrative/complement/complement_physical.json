@@ -1,11 +1,14 @@
 {
-  "intent" : "complement_physical",
-  "state" : "initial",
-  "response" : {
-      "initial": "Thank you! I workout. Or rather playout.",
-      "continued" : "Exercise!",
-      "annoyed" : "Haven't we talked about this?",
-      "bored": "You've said this."
-  }
-
+  "wordsum_narrative" : [
+    {
+      "intent" : "complement_physical",
+      "state" : "initial",
+      "response" : {
+        "initial": "Thank you! I workout. Or rather playout.",
+        "continued" : "Exercise!",
+        "annoyed" : "Haven't we talked about this?",
+        "bored": "You've said this."
+      }
+    }
+  ]
 }

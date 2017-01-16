@@ -1,11 +1,14 @@
-{
-  "intent" : "greet",
-  "state" : "initial",
-  "response" : {
-      "initial": "Hi",
-      "continued" : "Hi?",
-      "annoyed" : "HI!",
-      "bored": "...Hi..."
-  }
-
+{  
+  "wordsum_narrative" : [
+    {
+      "intent" : "greet",
+      "state" : "initial",
+      "response" : {
+        "initial": "Hi",
+        "continued" : "Hi?",
+        "annoyed" : "HI!",
+        "bored": "...Hi..."
+      }
+    }
+  ]
 }

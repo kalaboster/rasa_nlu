@@ -31,7 +31,7 @@ class Narrative():
 
             for (dirpath, dirnames, filenames) in os.walk(self.narrative_dir):
                 for filename in filenames:
-                    if filename.endswith('.json'):
+                    if self.validate_file_json(dirpath + os.path.sep + filename):
                         self.narrative_files.append(dirpath + os.path.sep + filename)
                         print dirpath + os.path.sep + filename
 
@@ -41,9 +41,8 @@ class Narrative():
         # Check the files for json and if that json fits the pattern.
         def validate_file_json(self, file):
 
+            json_string = ""
             json_object = {}
-
-            print(file)
             # Unlike information, it's easier to assume true and any False changes.
             valid = True
 
@@ -55,24 +54,23 @@ class Narrative():
             if not file.endswith('.json'):
                 valid = False
 
-            # Check for valid json by loading file.
-            try:
-                json_object = json.loads(file)
-                print(json_object)
-            except ValueError, e:
+            # Open file and read in the json or try.
+            if os.path.isfile(file):
+                try:
+                    with open(file, 'r') as file_data:
+                        json_object = json.load(file_data)
+                except ValueError, e:
+                    valid = False
+            else:
                 valid = False
 
             # Check for object assuming that the previous try doesn't puke.
-            if not json_object['intent']:
+            try:
+                value = json_object['wordsum_narrative']
+            except KeyError, e:
                 valid = False
 
             return valid
-
-
-
-            json_data = json.load(file_data)
-
-
 
 
         # Read all the believed to valid files and load into the Narrative.
@@ -82,6 +80,15 @@ class Narrative():
             if self.narrative_files is None:
                 raise ValueError("No narrative_files is None: " + self.narrative_files)
 
+            for file in self.narrative_files:
+                try:
+                    with open(file, 'r') as file_data:
+                        tmp_dict = json.load(file_data)
+                        self.narrative_dict['wordsum_narrative'].append(tmp_dict['wordsum_narrative'])
+                except ValueError, e:
+                    valid = False
+
+            return self.narrative_dict
 
 
         def reply(self, intent):
