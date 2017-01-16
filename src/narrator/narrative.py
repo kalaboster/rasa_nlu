@@ -2,7 +2,15 @@ import os
 import datetime
 import json
 
+__author__ = "Kalab Oster"
+__copyright__ = "Copyright 2017, Word Sum"
+__credits__ = ["Kalab Oster"]
+__license__ = "GPL"
+__version__ = "2.0.0"
+__maintainer__ = "Kalab Oster"
+__status__ = "Development"
 
+# A class to create a narrative for the both and begin to create its state.
 class Narrative():
         def __init__(self, narrative_dir=None):
             # Check to be sure it is not none.
@@ -91,11 +99,25 @@ class Narrative():
                 except ValueError, e:
                     valid = False
 
+            # Write the json to the init.
+            self.narrative_dict = narrative_json
+
+            # Return it because we do now.
             return narrative_json
 
 
         def reply(self, intent):
 
+            response = "default"
+
             # Check at min that there is a value
             if self.narrative_dict is None:
                 raise ValueError("No narrator as narrator is None: " + self.narrative_dict)
+
+            for item in self.narrative_dict['wordsum_narrative']:
+                if intent == item['intent']:
+                    print intent
+                    response = json.dumps(item['response'])
+                    break
+
+            return response
