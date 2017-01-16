@@ -39,15 +39,38 @@ class Narrative():
 
 
         # Check the files for json and if that json fits the pattern.
-        def check_files_json(self):
+        def validate_file_json(self, file):
+
+            json_object = {}
+
+            print(file)
+            # Unlike information, it's easier to assume true and any False changes.
+            valid = True
 
             # Check at min that there is a value
-            if self.narrative_files is None:
-                raise ValueError("No narrative_files is None: " + self.narrative_files)
+            if file is None:
+                raise ValueError("No file to check.")
 
-            for file in self.narrative_files:
-                with open(file) as file_data:
-                    json_data = json.load(file_data)
+            # Check for file ending for it will be easy and conform user.
+            if not file.endswith('.json'):
+                valid = False
+
+            # Check for valid json by loading file.
+            try:
+                json_object = json.loads(file)
+                print(json_object)
+            except ValueError, e:
+                valid = False
+
+            # Check for object assuming that the previous try doesn't puke.
+            if not json_object['intent']:
+                valid = False
+
+            return valid
+
+
+
+            json_data = json.load(file_data)
 
 
 
