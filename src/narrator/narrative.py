@@ -76,6 +76,8 @@ class Narrative():
         # Read all the believed to valid files and load into the Narrative.
         def read_files(self):
 
+            narrative_json = json.loads('{"wordsum_narrative" : []}')
+
             # Check at min that there is a value
             if self.narrative_files is None:
                 raise ValueError("No narrative_files is None: " + self.narrative_files)
@@ -84,11 +86,12 @@ class Narrative():
                 try:
                     with open(file, 'r') as file_data:
                         tmp_dict = json.load(file_data)
-                        self.narrative_dict['wordsum_narrative'].append(tmp_dict['wordsum_narrative'])
+                        for item in tmp_dict['wordsum_narrative']:
+                            narrative_json['wordsum_narrative'].append(item)
                 except ValueError, e:
                     valid = False
 
-            return self.narrative_dict
+            return narrative_json
 
 
         def reply(self, intent):

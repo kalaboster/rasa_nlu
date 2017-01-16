@@ -51,4 +51,4 @@ def  test_read_files():
     narrative_dict = {}
     narrative_dict = narrator.read_files()
 
-    assert narrative_dict == ""
+    assert narrative_dict['wordsum_narrative'][0] == {'intent': 'greet', 'response': {'annoyed': 'HI!', 'bored': '...Hi...', 'continued': 'Hi?', 'initial': 'Hi'}, 'state': 'initial'}
