@@ -9,6 +9,7 @@ import logging
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 from rasa_nlu.train import do_train
 from rasa_nlu.config import RasaNLUConfig
+from rasa_nlu.narrator.narrative import Narrative
 
 
 class RasaNLUServer(object):
@@ -97,6 +98,9 @@ class DataRouter(object):
         self.train_proc = None
         self.model_dir = config.path
         self.token = config.token
+        self.narrator = Narrative(self.config.server_model_dir)
+        self.narrator.load_files()
+        self.narrator.read_files()
 
     def extract(self, data):
         return self.emulator.normalise_request_json(data)
@@ -213,7 +217,8 @@ class RasaRequestHandler(BaseHTTPRequestHandler):
                 self._set_headers()
                 data_string = self.rfile.read(int(self.headers['Content-Length']))
                 data_dict = json.loads(data_string.decode("utf-8"))
-                self.wfile.write(self.get_response(data_dict))
+                response = json.loads(self.get_response(data_dict))
+                self.wfile.write(self.data_router.narrator.reply(response['intent']))
         else:
             self.auth_err()
         return

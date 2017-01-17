@@ -54,8 +54,8 @@ class SpacySklearnTrainer(Trainer):
         entity_extractor_config_file = os.path.join(ner_dir, "config.json")
         entity_extractor_file = os.path.join(ner_dir, "model")
 
-        write_training_metadata(dir_name, timestamp, data_file, narrative_dir, self.name, self.language_name,
-                                classifier_file, ner_dir)
+        write_training_metadata(dir_name, timestamp, data_file, self.name, self.language_name,
+                                classifier_file, ner_dir, narrative_dir)
 
         # Wrtiing the training_data file.
         with open(data_file, 'w') as f:
